@@ -7,12 +7,12 @@ from tqdm import *
 
 class LM(object):
     def __init__(self):
-        self.lm_model = OpenAIGPTLMHeadModel.from_pretrained('bert-base-chinese')
+        self.lm_model = BertModel.from_pretrained('bert-base-chinese')
         self.lm_model.eval()
         self.cuda = torch.cuda.is_available()
         if self.cuda:
             self.lm_model = self.lm_model.cuda()
-        self.tokenizer = OpenAIGPTTokenizer.from_pretrained('bert-base-chinese')
+        self.tokenizer = BertTokenizer.from_pretrained('bert-base-chinese')
 
     def score_sentences(self, sentences):
         scores = []
