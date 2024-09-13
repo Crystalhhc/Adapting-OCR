@@ -1,18 +1,17 @@
-#from pytorch_pretrained_bert import (OpenAIGPTTokenizer, OpenAIGPTModel, OpenAIGPTLMHeadModel)
-from pytorch_pretrained_bert.tokenization import BertTokenizer
-from pytorch_pretrained_bert.modeling import BertModel
+from pytorch_pretrained_bert import (OpenAIGPTTokenizer, 
+OpenAIGPTModel, OpenAIGPTLMHeadModel)
 import torch
 import pdb
 from tqdm import *
 
 class LM(object):
     def __init__(self):
-        self.lm_model = OpenAIGPTLMHeadModel.from_pretrained('bert-base-chinese')
+        self.lm_model = OpenAIGPTLMHeadModel.from_pretrained('openai-gpt')
         self.lm_model.eval()
         self.cuda = torch.cuda.is_available()
         if self.cuda:
             self.lm_model = self.lm_model.cuda()
-        self.tokenizer = OpenAIGPTTokenizer.from_pretrained('bert-base-chinese')
+        self.tokenizer = OpenAIGPTTokenizer.from_pretrained('openai-gpt')
 
     def score_sentences(self, sentences):
         scores = []
